@@ -35,3 +35,20 @@ class BuyForm(FlaskForm):
 
 class SellForm(FlaskForm):
     btn_sell = SubmitField(label='Sell Product')
+
+
+class EditForm(FlaskForm):
+    username = StringField(label="User Name", validators=[Length(min=3, max=25), DataRequired()])
+    email = StringField(label="Email", validators=[Email(), DataRequired()])
+    btn_change = SubmitField('Сhange')
+
+    def validate_username(self, check_username):
+        user = User.query.filter_by(username=check_username.data).first()
+        if user:
+            raise ValidationError('A user with this name is already registered. Please enter another name.')
+
+    def validate_email(self, check_email):
+        email = User.query.filter_by(email=check_email.data).first()
+        if email:
+            raise ValidationError('A user with such an email is already registered. \
+                                      Please enter a different email address.')

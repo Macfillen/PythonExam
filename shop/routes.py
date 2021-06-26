@@ -1,7 +1,7 @@
 from shop import app, db
 from flask import render_template, redirect, url_for, flash, request
 from shop.models import Product, User
-from shop.forms import RegistrationForm, LoginForm, BuyForm, SellForm
+from shop.forms import RegistrationForm, LoginForm, BuyForm, SellForm, EditForm
 from flask_login import login_user, logout_user, login_required, current_user
 
 
@@ -101,3 +101,34 @@ def logout_page():
     flash(f"You are logged out of your account", category='info')
 
     return redirect(url_for("home_page"))
+
+
+@app.route('/change_profile', methods=['GET', 'POST'])
+@login_required
+def user_page():
+    form = EditForm()
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        db.session.commit()
+        flash('Your changes have been saved.', category='success')
+        return redirect(url_for('shop_page'))
+
+    else:
+        cond1 = current_user.username == form.username.data
+        cond2 = current_user.email == form.email.data
+        if cond1 or cond2:
+            if cond1 and cond2:
+                flash('The entered name is the current name. No changes have been made.', category='info')
+                flash('The entered email is the current email. No changes have been made.', category='info')
+            elif cond1:
+                flash('The entered name is the current name. No changes have been made.', category='info')
+            else:
+                flash('The entered email is the current email. No changes have been made.', category='info')
+
+        elif form.errors != {}:
+            for error in form.errors.values():
+                flash(f'Registration error: {error}', category='danger')
+
+    return render_template('change_profile.html', title='Edit Profile', form=form)
+

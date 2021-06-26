@@ -34,11 +34,13 @@
                 <li class="nav-item">
                     <a class="nav-link" style="color:white; font-weight: bold">
                         <i class="fas fa-wallet"></i>
-                        {{ current_user.budget }}
+                        {{ current_user.budget }}₽
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"> Hello, {{ current_user.username }}</a>
+                    <a class="nav-link" href="{{ url_for('user_page') }}">
+                        {{current_user.username}}
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('logout_page') }}">Logout</a>

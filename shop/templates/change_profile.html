@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Change Profile
+{% endblock %}
+
+{% block content %}
+<body class="text-center">
+    <div class="container">
+        <form method="POST">
+            {{ form.hidden_tag() }}
+
+            <h1>Change Profile</h1>
+
+            <br>
+
+            {{ form.username.label() }}
+            {{ form.username(class="form-control", placeholder="User Name") }}
+
+            {{ form.email.label() }}
+            {{ form.email(class="form-control", placeholder="Email") }}
+
+            <br>
+
+            {{ form.btn_change(class="btn btn-block btn-dark") }}
+        </form>
+    </div>
+</body>
+{% endblock %}
