@@ -8,7 +8,7 @@
 <body class="text-center">
     <div class="container">
         <form method="POST">
-            {{ form.hidden_tag() }}
+            {{ form.hidden_tag() }}  <!-- защита от атаки CSRF -->
 
             <h1>Change Profile</h1>
 

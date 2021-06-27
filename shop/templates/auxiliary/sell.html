@@ -11,7 +11,7 @@
       </div>
       <div class="modal-body">
           <form method="POST">
-              {{ sell_form.hidden_tag() }}
+              {{ sell_form.hidden_tag() }}  <!-- защита от атаки CSRF -->
               <h4 class="text-center">
                   Are you sure you want to sell {{ product.name }} for {{ product.price }}₽?
               </h4>
