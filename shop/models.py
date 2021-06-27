@@ -7,9 +7,8 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-# класс, реализующий пользователелй должен иметь
-# 4 обязательных метода, которые можно унаследовать
-# от UserMixin
+# класс, реализующий пользователелй, должен иметь 4 обязательных
+# метода, которые можно унаследовать от UserMixin
 # подробнее: https://flask-login.readthedocs.io/en/latest/
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer(), primary_key=True)
