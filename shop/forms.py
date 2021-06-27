@@ -20,13 +20,13 @@ class RegistrationForm(FlaskForm):
     email = StringField(label="Email", validators=[Email(), DataRequired()])
     password = PasswordField(label="Password", validators=[Length(min=8), DataRequired()])
     confirm_password = PasswordField(label="Confirm the Password", validators=[EqualTo('password'), DataRequired()])
-    submit = SubmitField(label='Complete Registration')
+    btn_registration = SubmitField(label='Complete Registration')
 
 
 class LoginForm(FlaskForm):
     username = StringField(label="User Name", validators=[DataRequired()])
     password = PasswordField(label="Password", validators=[DataRequired()])
-    submit = SubmitField(label='Log in')
+    btn_login = SubmitField(label='Log in')
 
 
 class BuyForm(FlaskForm):
