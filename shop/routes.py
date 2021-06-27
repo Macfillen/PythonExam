@@ -130,5 +130,5 @@ def user_page():
             for error in form.errors.values():
                 flash(f'Registration error: {error}', category='danger')
 
-    return render_template('change_profile.html', title='Edit Profile', form=form)
+    return render_template('change_profile.html', title='Change Profile', form=form)
 
