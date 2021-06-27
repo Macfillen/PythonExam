@@ -18,7 +18,6 @@ def shop_page():
     sell_form = SellForm()
 
     if request.method == 'POST':
-
         purchased_product = request.form.get('purchased_product')
         purchased_product_obj = Product.query.filter_by(name=purchased_product).first()
         if purchased_product_obj:
@@ -88,7 +87,6 @@ def login_page():
             flash(f'You are logged in as {attempt_user.username}', category='success')
 
             return redirect(url_for('shop_page'))
-
         else:
             flash('The username or password does not match. Try again.', category="danger")
 
@@ -107,16 +105,17 @@ def logout_page():
 @login_required
 def user_page():
     form = EditForm()
+
     if form.validate_on_submit():
         current_user.username = form.username.data
         current_user.email = form.email.data
         db.session.commit()
         flash('Your changes have been saved.', category='success')
         return redirect(url_for('shop_page'))
-
     else:
         cond1 = current_user.username == form.username.data
         cond2 = current_user.email == form.email.data
+
         if cond1 or cond2:
             if cond1 and cond2:
                 flash('The entered name is the current name. No changes have been made.', category='info')
@@ -125,7 +124,6 @@ def user_page():
                 flash('The entered name is the current name. No changes have been made.', category='info')
             else:
                 flash('The entered email is the current email. No changes have been made.', category='info')
-
         elif form.errors != {}:
             for error in form.errors.values():
                 flash(f'Registration error: {error}', category='danger')
