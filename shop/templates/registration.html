@@ -16,16 +16,28 @@
             </br>
 
             {{ form.username.label() }}
-            {{ form.username(class="form-control", placeholder="User Name") }}
+            <div data-toggle="tooltip" data-placement="bottom"
+                 title="Username must be between 3 and 25 characters">
+                {{ form.username(class="form-control", placeholder="User Name") }}
+            </div>
 
             {{ form.email.label() }}
+            <div data-toggle="tooltip" data-placement="bottom"
+                 title="Email consists of a unique name, @ and domain">
             {{ form.email(class="form-control", placeholder="Email") }}
+            </div>
 
             {{ form.password.label() }}
+            <div data-toggle="tooltip" data-placement="bottom"
+                 title="Password cannot be less than 8 characters">
             {{ form.password(class="form-control", placeholder="Password") }}
+            </div>
 
             {{ form.confirm_password.label() }}
+            <div data-toggle="tooltip" data-placement="bottom"
+                 title="Enter the same password as in the form above">
             {{ form.confirm_password(class="form-control", placeholder="Confirm the password") }}
+            </div>
 
             <br>
 

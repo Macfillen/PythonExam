@@ -16,10 +16,16 @@
             </br>
 
             {{ form.username.label() }}
+            <div data-toggle="tooltip" data-placement="bottom"
+                 title="Enter your username">
             {{ form.username(class="form-control", placeholder="User Name") }}
+            </div>
 
             {{ form.password.label() }}
+            <div data-toggle="tooltip" data-placement="bottom"
+                 title="Enter your password">
             {{ form.password(class="form-control", placeholder="Password") }}
+            </div>
 
             <br>
 
